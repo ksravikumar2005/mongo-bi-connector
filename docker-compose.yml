@@ -1,0 +1,24 @@
+version: '2'
+services:
+  mongo-bi-connector:
+    build : .
+    networks:
+      - dockernet
+    ports:
+      - 9015:3307
+    command: wait-and-run.sh
+    environment:
+      DB_NAME : visage
+      MONGO_AUTH: 1
+      MONGO_HOST : 192.168.0.1
+      MONGO_PORT : 27017
+      SCHEMA_PATH : /etc/mongodb-bi-connector/schema/mongomysqlmap.drdl
+      ADDR : mongo-bi-connector:3307
+
+networks:
+  dockernet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1
