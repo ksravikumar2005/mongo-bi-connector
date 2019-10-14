@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:7.6.1810
 MAINTAINER ksravikumar2005@gmail.com
 
 RUN yum -y update && yum -y install openssl libssl-dev && yum clean all
